@@ -19,7 +19,7 @@
 <body>
     
     <div class="container">
-        @component('component.navbar')
+        @component('component.navbar', ["currentRoute" => $currentRoute])
             
         @endcomponent
         <main role="main">

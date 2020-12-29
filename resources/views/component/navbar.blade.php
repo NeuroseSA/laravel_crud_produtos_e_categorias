@@ -4,13 +4,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar">
-        <a class="navbar-brand" href="/">Home</a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/produtos">Produtos</a>
+          <li @if($currentRoute == "home") class="nav-item active" @else class="nav-item" @endif>
+            <a class="nav-link" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/categorias">Categorias</a>
+          <li @if ($currentRoute == "products") class="nav-item active" @else class="nav-item" @endif >
+            <a class="nav-link" aria-current="page" href="{{route('products')}}">Produtos</a>
+          </li>
+          <li @if ($currentRoute == "categories") class="nav-item active" @else class="nav-item" @endif >
+            <a class="nav-link" href="{{route('category')}}">Categorias</a>
           </li>
 
         </ul>

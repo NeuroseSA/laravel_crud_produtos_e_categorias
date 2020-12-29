@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app', ["currentRoute" => "home"])
 
 @section('body')   
 
@@ -20,7 +20,7 @@
                     <p class="card-text">Aqui você cadastra suas categorias.
                         Para que os produtos possam ser ordenados.
                     </p>
-                    <a href="/categorias" class="btn btn-primary">Cadastrar</a>
+                    <a href="{{route('categoriesCreate')}}" class="btn btn-primary">Cadastrar</a>
                 </div>
             </div>
         </div>
