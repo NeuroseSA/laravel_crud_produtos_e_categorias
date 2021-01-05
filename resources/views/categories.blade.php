@@ -22,7 +22,7 @@
                         <td>{{$item->name}}</td>
                         <td>
                             <a href="/categorias/editar/{{$item->id}}" class="btn btn-sm btn-primary">Editar</a>
-                            <a href="/categorias/apagar/{{$item->id}}" class="btn btn-sm btn-danger">Editar</a>
+                            <a href="/categorias/apagar/{{$item->id}}" class="btn btn-sm btn-danger">Apagar</a>
                         </td>
                     </tr>
                 @endforeach

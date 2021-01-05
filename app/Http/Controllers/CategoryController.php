@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use PhpParser\Node\Stmt\TryCatch;
 
 class CategoryController extends Controller
 {
@@ -36,10 +37,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $cat = new Category();
-        $cat->name = $request->input('nameCategory');
-        $cat->save();
-        return redirect(route('category'));
+        try {
+            $cat = new Category();
+            $cat->name = $request->input('nameCategory');
+            $cat->save();
+            return redirect(route('category'));
+        } catch (\Throwable $th) {
+            return redirect(route('category'));
+        }
     }
 
     /**
@@ -61,7 +66,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        if(isset($category)){
+            return view('editcategory', compact('category'));
+        }
+        return redirect(route('category'));
     }
 
     /**
@@ -73,7 +82,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        if(isset($category)){
+            $category->name = $request->input('nameCategory');
+            $category->save();
+        }
+        return redirect(route('category'));
     }
 
     /**
@@ -84,6 +98,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        if(isset($category)){
+            $category->delete();
+        }
+        return redirect(route('category'));
     }
 }
