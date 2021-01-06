@@ -11,7 +11,7 @@
                     <p class="card-text">Aqui você cadastra todos os produtos.
                         Necessário cadastrar categorias primeiro.
                     </p>
-                    <a href="/produtos" class="btn btn-primary">Cadastrar</a>
+                    <a href="{{route('productCreate')}}" class="btn btn-primary">Cadastrar</a>
                 </div>
             </div>
             <div class="card border border-primary">

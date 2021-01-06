@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/produtos', 'ProductController@index')->name("products");
+Route::get('/produtos/novo', 'ProductController@create')->name("productCreate");
+Route::post('/produtos', 'ProductController@store');
+Route::get('/produtos/editar/{id}', 'ProductController@edit')->name("productEdit");
+Route::post('/produtos/{id}', 'ProductController@update');
+Route::get('/produtos/apagar/{id}', 'ProductController@destroy')->name("productDestroy");
+
+
+
 Route::get('/categorias', 'CategoryController@index')->name("category");
 Route::post('/categorias', 'CategoryController@store');
 Route::post('/categorias/{id}', 'CategoryController@update');

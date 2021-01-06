@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Noma da Categoria</th>
+                    <th>Nome da Categoria</th>
                     <th>Ações</th>                    
                 </tr>
             </thead>
