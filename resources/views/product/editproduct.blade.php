@@ -8,8 +8,8 @@
             <form action="{{ route('products') }}/{{$prod->id}}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="nameProduct">Nome do produto</label>
-                    <input type="text" class="form-control" name="nameProduct" id="nameProduct" value="{{$prod->name}}"
+                    <label for="name">Nome do produto</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{$prod->name}}"
                         placeholder="Ex: Sansung a10">
                     <label for="stock">Quantidade em estoque</label>
                     <input type="number" class="form-control" name="stock" id="stock" value="{{$prod->stock}}" placeholder="Ex: Sansung a10">
@@ -27,7 +27,7 @@
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-primary btn-sm" type="button">Cadastrar Categoria</button>
+                            <a href="{{route('categoriesCreate')}}" class="btn btn-primary btn-sm center"> <h6 style="margin-top: 4px; font-size: 14px">Cadastrar Categoria</h6 style="position: relative;"> </a>
                         </div>
                     </div>
 
@@ -36,5 +36,14 @@
                 <button type="submit" class="btn btn-danger btn-sm">Cancelar</button>
             </form>
         </div>
+        @if ($errors->any())
+        <div class="card-footer">
+            @foreach ($errors->all() as $errors)
+                <div class="alert alert-danger" role="alert">
+                    {{ $errors }}
+                </div>
+            @endforeach
+        </div>
+         @endif
     </div>
 @endsection

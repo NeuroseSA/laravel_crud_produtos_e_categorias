@@ -33,3 +33,12 @@ Route::get('/categorias/novo', 'CategoryController@create')->name("categoriesCre
 Route::get('/categorias/apagar/{id}', 'CategoryController@destroy')->name("categoriesDestroy");
 Route::get('/categorias/editar/{id}', 'CategoryController@edit')->name("categoriesEdit");
 
+
+
+Route::get('/cliente', 'ClientController@index')->name("client");
+Route::post('/cliente', 'ClientController@store');
+Route::get('/cliente/novo', 'ClientController@create')->name("clientCreate");
+Route::get('/cliente/editar/{id}', 'ClientController@edit')->name("clientEdit");
+Route::post('/cliente/{id}', 'ClientController@update');
+Route::get('/cliente/apagar/{id}', 'ClientController@destroy');
+

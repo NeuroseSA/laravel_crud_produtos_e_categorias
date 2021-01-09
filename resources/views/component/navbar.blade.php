@@ -5,16 +5,26 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <h4>
           <li @if($currentRoute == "home") class="nav-item active" @else class="nav-item" @endif>
             <a class="nav-link" aria-current="page" href="/">Home</a>
           </li>
+          </h4>
+          <h4>
+            <li @if($currentRoute == "client") class="nav-item active" @else class="nav-item" @endif>
+              <a class="nav-link" aria-current="page" href="{{route('client')}}">Cliente</a>
+            </li>
+            </h4>
+          <h4>
           <li @if ($currentRoute == "products") class="nav-item active" @else class="nav-item" @endif >
             <a class="nav-link" aria-current="page" href="{{route('products')}}">Produtos</a>
           </li>
+          </h4>
+          <h4>
           <li @if ($currentRoute == "categories") class="nav-item active" @else class="nav-item" @endif >
             <a class="nav-link" href="{{route('category')}}">Categorias</a>
           </li>
-
+          </h4>
         </ul>
 
       </div>

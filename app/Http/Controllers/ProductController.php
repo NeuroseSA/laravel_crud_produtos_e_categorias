@@ -38,9 +38,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:Products',
+            'stock' => 'required',
+            'price' => 'required'
+        ],[
+            'name.required' => 'Nome do produto é obrigatório',
+            'price.required' => 'Preço do produto é obrigatório',
+            'stock.required' => 'Estoque do produto é obrigatório',
+            'name.unique' => 'Produto ja cadastrado',
+        ]);
+
         try {
             $prod = new Product();
-            $prod->name = $request->input('nameProduct');
+            $prod->name = $request->input('name');
             $prod->stock = $request->input('stock');
             $prod->price = $request->input('price');
             $prod->category_id = $request->input('category_id');
@@ -90,8 +101,20 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $prod = Product::find($id);
+
+        $request->validate([
+            'name' => 'required|unique:Products',
+            'stock' => 'required',
+            'price' => 'required'
+        ],[
+            'name.required' => 'Nome do produto é obrigatório',
+            'price.required' => 'Preço do produto é obrigatório',
+            'stock.required' => 'Estoque do produto é obrigatório',
+            'name.unique' => 'Produto ja cadastrado',
+        ]);
+
         if(isset($prod)){
-            $prod->name = $request->input('nameProduct');
+            $prod->name = $request->input('name');
             $prod->stock = $request->input('stock');
             $prod->price = $request->input('price');
             $prod->category_id = $request->input('category_id');

@@ -8,13 +8,13 @@
             <form action="{{ route('products') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="nameProduct">Nome do produto</label>
-                    <input type="text" class="form-control" name="nameProduct" id="nameProduct"
-                        placeholder="Ex: Sansung a10">
+                    <label for="name">Nome do produto</label>
+                    <input type="text" class="form-control" name="name" id="name"
+                        placeholder="Ex: Motorola G5">
                     <label for="stock">Quantidade em estoque</label>
-                    <input type="text" class="form-control" name="stock" id="stock" placeholder="Ex: Sansung a10">
+                    <input type="text" class="form-control" name="stock" id="stock" placeholder="Ex: 96">
                     <label for="price">Preço do produto</label>
-                    <input type="text" class="form-control" name="price" id="price" placeholder="Ex: Sansung a10">
+                    <input type="text" class="form-control" name="price" id="price" placeholder="Ex: 689.99">
                     <label for="price">Categoria do produto</label>
                     <div class="input-group">
                         <select class="custom-select" id="inputGroupSelect01" name="category_id">
@@ -24,7 +24,7 @@
                             @endforeach
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-primary btn-sm" type="button">Cadastrar Categoria</button>
+                            <a href="{{route('categoriesCreate')}}" class="btn btn-primary btn-sm center"> <h6 style="margin-top: 4px; font-size: 14px">Cadastrar Categoria</h6 style="position: relative;"> </a>
                         </div>
                     </div>
 
@@ -33,5 +33,14 @@
                 <button type="submit" class="btn btn-danger btn-sm">Cancelar</button>
             </form>
         </div>
+        @if ($errors->any())
+        <div class="card-footer">
+            @foreach ($errors->all() as $errors)
+                <div class="alert alert-danger" role="alert">
+                    {{ $errors }}
+                </div>
+            @endforeach
+        </div>
+    @endif
     </div>
 @endsection

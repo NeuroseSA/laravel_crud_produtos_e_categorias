@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $listCategories = Category::all();
-        return view('categories',compact('listCategories'));
+        return view('categories', compact('listCategories'));
     }
 
     /**
@@ -37,9 +37,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:Categories'
+        ], [
+            'name.unique' => 'Já existe essa categoria cadastrada',
+            'name.required' => 'O nome da Categoria é obrigatório'
+            ]);
+
         try {
             $cat = new Category();
-            $cat->name = $request->input('nameCategory');
+            $cat->name = $request->input('name');
             $cat->save();
             return redirect(route('category'));
         } catch (\Throwable $th) {
@@ -67,7 +74,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        if(isset($category)){
+        if (isset($category)) {
             return view('editcategory', compact('category'));
         }
         return redirect(route('category'));
@@ -83,8 +90,26 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-        if(isset($category)){
-            $category->name = $request->input('nameCategory');
+
+        if ($category->name == $request->name) {
+            $request->validate([
+                'name' => 'required'
+            ], [
+                'name.unique' => 'Já existe essa categoria cadastrada',
+                'name.required' => 'O nome da Categoria é obrigatório'
+            ]);
+        }else{
+            $request->validate([
+                'name' => 'required|unique:Categories'
+            ], [
+                'name.unique' => 'Já existe essa categoria cadastrada',
+                'name.required' => 'O nome da Categoria é obrigatório'
+            ]);
+        }
+
+        
+        if (isset($category)) {
+            $category->name = $request->input('name');
             $category->save();
         }
         return redirect(route('category'));
@@ -99,7 +124,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        if(isset($category)){
+        if (isset($category)) {
             $category->delete();
         }
         return redirect(route('category'));
