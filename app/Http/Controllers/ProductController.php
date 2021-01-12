@@ -12,6 +12,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function indexAPI()
+    {
+        //$cat = Category::All();
+        $listProducts = Product::All();
+        return  $listProducts->toJson();
+    }
+
     public function index()
     {
         $cat = Category::All();
@@ -56,7 +63,8 @@ class ProductController extends Controller
             $prod->price = $request->input('price');
             $prod->category_id = $request->input('category_id');
             $prod->save();
-            return redirect(route('products'));
+            return json_encode($prod);
+            //return redirect(route('products'));
         } catch (\Throwable $th) {
             return redirect(route('products'));
         }
@@ -85,7 +93,8 @@ class ProductController extends Controller
         $cat = Category::All();
         $prod = Product::find($id);
         if(isset($prod)){
-            return view('product.editproduct', compact('prod', 'cat'));
+            //return view('product.editproduct', compact('prod', 'cat'));
+            return json_encode($prod);
         }
         return redirect(route('products'));
 
@@ -102,7 +111,7 @@ class ProductController extends Controller
     {
         $prod = Product::find($id);
 
-        $request->validate([
+/*         $request->validate([
             'name' => 'required|unique:Products',
             'stock' => 'required',
             'price' => 'required'
@@ -111,7 +120,7 @@ class ProductController extends Controller
             'price.required' => 'Preço do produto é obrigatório',
             'stock.required' => 'Estoque do produto é obrigatório',
             'name.unique' => 'Produto ja cadastrado',
-        ]);
+        ]); */
 
         if(isset($prod)){
             $prod->name = $request->input('name');
@@ -119,8 +128,9 @@ class ProductController extends Controller
             $prod->price = $request->input('price');
             $prod->category_id = $request->input('category_id');
             $prod->save();
+            return json_encode($prod);
         }
-        return redirect(route('products'));
+        //return redirect(route('products'));
     }
 
     /**
@@ -135,6 +145,6 @@ class ProductController extends Controller
         if(isset($prod)){
             $prod->delete();
         }
-        return redirect(route('products'));
+        //return redirect(route('products'));
     }
 }

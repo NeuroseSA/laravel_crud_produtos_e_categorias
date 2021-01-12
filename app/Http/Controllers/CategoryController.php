@@ -129,4 +129,9 @@ class CategoryController extends Controller
         }
         return redirect(route('category'));
     }
+
+    public function indexJson(){
+        $listCategories = Category::all();
+        return json_encode($listCategories);
+    }
 }
