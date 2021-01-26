@@ -13,36 +13,47 @@
                     </li>
                 </h4>
                 <h4>
-                <li @if ($currentRoute == 'logado.login') class="nav-item active" @else
+                    <li @if ($currentRoute == 'logado.login') class="nav-item active"
+                    @else
                         class="nav-item" @endif>
-                        <a class="nav-link" aria-current="page" href="{{route('logado.showLogin')}}">Login</a>
+                        @auth
+                            <a class="nav-link" aria-current="page" href="{{ route('logout') }}">Logout</a>
+                        @endauth
+                        @guest
+                            <a class="nav-link" aria-current="page" href="{{ route('logado.showLogin') }}">Login</a>
+                        @endguest
                     </li>
                 </h4>
                 <h4>
-                <h4>
-                  <li @if ($currentRoute == 'Logout') class="nav-item active" @else
-                          class="nav-item" @endif>
-                          <a class="nav-link" aria-current="page" href="{{ route('logout') }}">Logout</a>
-                      </li>
-                  </h4>
-                  <h4>
-                <li @if ($currentRoute == 'client') class="nav-item active" @else
-                        class="nav-item" @endif>
-                        <a class="nav-link" aria-current="page" href="{{ route('client') }}">Cliente</a>
-                    </li>
-                </h4>
-                <h4>
-                <li @if ($currentRoute == 'products') class="nav-item active" @else
-                        class="nav-item" @endif >
-                        <a class="nav-link" aria-current="page" href="{{ route('products') }}">Produtos</a>
-                    </li>
-                </h4>
-                <h4>
-                    <li @if ($currentRoute == 'categories') class="nav-item active"
-                    @else class="nav-item" @endif >
-                        <a class="nav-link" href="{{ route('category') }}">Categorias</a>
-                    </li>
-                </h4>
+                    <h4>
+                        <li @if ($currentRoute == 'client') class="nav-item active"
+                        @else
+                            class="nav-item" @endif>
+                            <a class="nav-link" aria-current="page" href="{{ route('client') }}">Cliente</a>
+                        </li>
+                    </h4>
+                    <h4>
+                        <li @if ($currentRoute == 'products') class="nav-item active"
+                        @else
+                            class="nav-item" @endif >
+                            <a class="nav-link" aria-current="page" href="{{ route('products') }}">Produtos</a>
+                        </li>
+                    </h4>
+                    <h4>
+                        <li @if ($currentRoute == 'categories') class="nav-item active"
+                        @else class="nav-item" @endif >
+                            <a class="nav-link" href="{{ route('category') }}">Categorias</a>
+                        </li>
+                    </h4>
+                    <h4>
+                        <li>
+                            <a class="nav-link" href="{{ route('category') }}">Bem vindo
+                                @auth
+                                    {{ Auth::user()->name }}
+                                @endauth
+                            </a>
+                        </li>
+                    </h4>
             </ul>
 
         </div>

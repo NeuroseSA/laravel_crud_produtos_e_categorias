@@ -1,4 +1,4 @@
-@extends('layout.app', ["currentRoute" => "home"])
+@extends('layout.app', ["currentRoute" => "logado.login"])
 
 @section('body')
 
